@@ -1,0 +1,31 @@
+---
+- hosts: all
+  tasks:
+  - name: Stop docker container
+    docker_container:
+      name: jpet-store
+      state: absent
+  - name: Remove docker container
+    docker_container :
+      name: jpet-store
+      state: absent
+  - name: Remove image
+    docker_image:
+      state: absent
+      name: slave/jdk8-maven
+      tag: latest
+  - name: Build an image and push it to a private repo
+    docker_image:
+      state: present
+      path: /var/lib/jenkins/workspace/Pet-Store
+      dockerfile: Dockerfile
+      name: slave/jdk8-maven
+      tag: latest
+  - name: Restart a container
+    docker_container:
+      name: jpet-store
+      image: slave/jdk8-maven:latest
+      state: started    
+      ports:
+        - "8080:8080"
+      command: "mvn clean package spring-boot:run"
