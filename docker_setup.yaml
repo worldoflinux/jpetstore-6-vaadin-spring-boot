@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: yes 
   gather_facts: no 
   tasks:
   - name: Stop docker container
