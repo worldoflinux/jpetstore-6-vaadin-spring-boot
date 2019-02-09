@@ -28,5 +28,5 @@
       image: slave/jdk8-maven:latest
       state: started    
       ports:
-        - "8080:8080"
+        - "8081:8081"
       command: "mvn clean package spring-boot:run"
