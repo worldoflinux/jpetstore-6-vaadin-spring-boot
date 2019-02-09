@@ -1,6 +1,8 @@
-FROM andreptb/oracle-java:8
+FROM primetoninc/jdk:1.7
 
 ENV MAVEN_VERSION 3.5.3
+
+RUN yum install -y wget 
 
 RUN wget http://archive.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz 
 
